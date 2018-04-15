@@ -1,13 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {AppContainer} from 'react-hot-loader'// eslint-disable-line
-import App from './App.jsx'
+import { BrowserRouter } from 'react-router-dom'
+import { AppContainer } from 'react-hot-loader'// eslint-disable-line
+import App from './views/App'
 
 const root = document.getElementById('root');
 const render = (Component) => {
   ReactDOM.hydrate(
     <AppContainer>
-      <Component />
+      <BrowserRouter>
+        <Component />
+      </BrowserRouter>
     </AppContainer>,
     root,
   )
@@ -15,8 +18,8 @@ const render = (Component) => {
 render(App)
 // 配置热更新
 if (module.hot) {
-  module.hot.accept('./App.jsx', () => {
-    const NextApp = require('./App.jsx').default
+  module.hot.accept('./views/App', () => {
+    const NextApp = require('./views/App').default
     render(NextApp)
   })
 }

@@ -1,11 +1,14 @@
 const path = require('path')
 module.exports = {
+  resolve: {
+    extensions: [".js", ".jsx"]
+  },
   //loader
   module:{
     rules:[
       {
         enforce:'pre', //先提前进行代码检查
-        test:/.(js|jsx)/,
+        test:/.(js|jsx)$/,
         loader:'eslint-loader',
         exclude:[
           path.resolve(__dirname,'../node_modules')

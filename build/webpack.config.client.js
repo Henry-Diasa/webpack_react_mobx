@@ -1,8 +1,10 @@
 const path = require('path');
+const webpackMerge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const baseConfig = require('./webpack.base')
 const isDev = process.env.NODE_ENV ==='development'
-const config = {
+const config = webpackMerge(baseConfig,{
     //入口
     entry:{
         app:path.join(__dirname,'../client/app.js')
@@ -13,27 +15,13 @@ const config = {
         path:path.join(__dirname,'../dist'),
         publicPath:'http://localhost:8888/public/'//html引入的js前缀，可以在这里添加静态资源或者cdn
     },
-    //loader
-    module:{
-        rules:[
-            {
-                test:/\.js$/,
-                loader:'babel-loader',
-                exclude:/node_modules/
-            },
-            {
-                test:/\.jsx$/,
-                loader:'babel-loader'
-            }
-        ]
-    },
     //插件
     plugins:[
         new  HtmlWebpackPlugin({// js文件引入html文件中
             template:path.join(__dirname,"../client/template.html")
         })
     ]
-}
+})
 //开发环境配置
 if(isDev){
     config.entry = {

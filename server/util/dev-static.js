@@ -44,21 +44,3 @@ module.exports = function (app){
         })
     })
 }
-
-// var n = 2; //4 8
-// var obj = {
-//     n:3,//6
-//     fn:(function(n){
-//        n*=2;
-//        this.n+=2;
-//        var n = 5; //6
-//        return function(m){
-//            this.n*=2;
-//            console.log(m+(++n))
-//        }
-//     })(n)
-// }
-// var f = obj.fn;
-// f(3); //9
-// obj.fn(3); //10
-// console.log(n,obj.n)

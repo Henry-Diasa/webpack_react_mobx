@@ -1,9 +1,12 @@
 const express = require('express')
 const ReactSSR = require('react-dom/server')// react服务端渲染SSR
+const favicon = require('serve-favicon')
 const fs = require('fs')
 const path = require('path');
 const app = express();
 const isDev = process.env.NODE_ENV === "development"
+
+app.use(favicon(path.join(__dirname,'../favicon.ico')))
 if(!isDev){
     const serverEntry = require('../dist/server-entry').default // 引入服务端入口文件 注意ESM export的使用require引入是放在default里面的
     const template = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf8')
